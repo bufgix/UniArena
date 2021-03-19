@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "535420584234",
+    "project_id": "uniarena-b8d07",
+    "storage_bucket": "uniarena-b8d07.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:535420584234:android:136e5a3f9b184a9b311e53",
+        "android_client_info": {
+          "package_name": "com.uniarena"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "535420584234-s9lthad1nvr1bs5c7kq424bpufrf1pm3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.uniarena",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "535420584234-dpijdfi6ap7geq4kmsdc6daip7dboijh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAfCVRVN6AVQCqdZ_Rz26Mu1nR_UE0u9DY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "535420584234-dpijdfi6ap7geq4kmsdc6daip7dboijh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
