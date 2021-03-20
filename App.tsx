@@ -11,17 +11,18 @@
 import React from 'react';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {NavigationContainer} from '@react-navigation/native';
-import {RootStack, LoginStackScreen} from '@/navigation';
+import {RootStackScreen} from '@/navigation';
 import {ThemeProvider} from 'react-native-elements';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+
+Icon.loadFont();
 
 const App = () => {
   return (
     <SafeAreaProvider>
       <ThemeProvider>
         <NavigationContainer>
-          <RootStack.Navigator headerMode="none">
-            <RootStack.Screen name="Login" component={LoginStackScreen} />
-          </RootStack.Navigator>
+          <RootStackScreen />
         </NavigationContainer>
       </ThemeProvider>
     </SafeAreaProvider>
