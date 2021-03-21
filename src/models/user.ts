@@ -35,6 +35,7 @@ export const User = types
         } else {
           console.log('error when log in: ', error);
         }
+        return Promise.reject(error);
       }
     }),
     saveAdditionalData: flow(function* (nickname: string) {

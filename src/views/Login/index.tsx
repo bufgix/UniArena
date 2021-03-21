@@ -26,7 +26,9 @@ function Login() {
         // yeni üye değilse direkt olarak maine gidilecek
         navigation.navigate('MainStack');
       }
-    });
+    }).catch(err => {
+      // Giriş sırasında hata oluşursa
+    })
   };
 
   return (

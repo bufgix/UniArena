@@ -6,7 +6,7 @@ export default function Feed() {
   return (
     <SafeAreaView>
       <Text h1>Feed</Text>
-      <Button title="Press Me" />
+
     </SafeAreaView>
   );
 }

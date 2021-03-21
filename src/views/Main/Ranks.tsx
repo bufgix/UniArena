@@ -6,7 +6,7 @@ export default function Ranks() {
   return (
     <SafeAreaView>
       <Text h1>Ranks</Text>
-      <Button title="Press Me" />
+
     </SafeAreaView>
   );
 }
