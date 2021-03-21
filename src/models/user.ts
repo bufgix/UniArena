@@ -1,10 +1,10 @@
-import {types, Instance, flow, toGenerator} from 'mobx-state-tree';
+import { types, Instance, flow, toGenerator } from 'mobx-state-tree';
 import {
   GoogleSignin,
   statusCodes,
 } from '@react-native-google-signin/google-signin';
 import auth from '@react-native-firebase/auth';
-import type {FirebaseAuthTypes} from '@react-native-firebase/auth';
+import type { FirebaseAuthTypes } from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 
 type UserDocType = {
@@ -21,7 +21,7 @@ export const User = types
     googleLogin: flow(function* () {
       try {
         yield GoogleSignin.hasPlayServices();
-        const {idToken} = yield* toGenerator(GoogleSignin.signIn());
+        const { idToken } = yield* toGenerator(GoogleSignin.signIn());
         const googleCredential = auth.GoogleAuthProvider.credential(idToken);
         const signData = yield* toGenerator(
           auth().signInWithCredential(googleCredential),

@@ -1,12 +1,12 @@
 import React from 'react';
-import {SafeAreaView} from 'react-native-safe-area-context';
-import {Text, Button} from 'react-native-elements';
-import {useNavigation} from '@react-navigation/native';
-import {StackNavigationProp} from '@react-navigation/stack';
-import type {RootStackProps} from '@/navigation';
-import {observer} from 'mobx-react-lite';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { Text, Button } from 'react-native-elements';
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import type { RootStackProps } from '@/navigation';
+import { observer } from 'mobx-react-lite';
 
-import {useStore} from '@/models';
+import { useStore } from '@/models';
 
 type NavigaitonProps = StackNavigationProp<RootStackProps, 'MainStack'>;
 
@@ -16,7 +16,7 @@ function Feed() {
 
   const doLogout = () => {
     store.user.logout().then(() => {
-      navigation.navigate('LoginStack', {screen: 'LoginScreen'});
+      navigation.navigate('LoginStack', { screen: 'LoginScreen' });
     });
   };
 

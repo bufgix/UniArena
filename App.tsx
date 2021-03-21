@@ -9,12 +9,12 @@
  */
 
 import React from 'react';
-import {SafeAreaProvider} from 'react-native-safe-area-context';
-import {NavigationContainer} from '@react-navigation/native';
-import {RootStackScreen} from '@/navigation';
-import {ThemeProvider} from 'react-native-elements';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { NavigationContainer } from '@react-navigation/native';
+import { RootStackScreen } from '@/navigation';
+import { ThemeProvider } from 'react-native-elements';
 
-import {StoreProvider, initStore} from '@/models';
+import { StoreProvider, initStore } from '@/models';
 
 const store = initStore();
 

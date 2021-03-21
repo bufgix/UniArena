@@ -1,9 +1,9 @@
 import React from 'react';
-import {createStackNavigator} from '@react-navigation/stack';
-import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
-import {NavigatorScreenParams} from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import { NavigatorScreenParams } from '@react-navigation/native';
 
-import {TabBard} from '@/components';
+import { TabBard } from '@/components';
 
 import LoginScreen from '@/views/Login/index';
 

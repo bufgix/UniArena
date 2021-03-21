@@ -1,13 +1,13 @@
 import React from 'react';
-import {View, TouchableOpacity, Platform} from 'react-native';
-import {MaterialTopTabBarProps} from '@react-navigation/material-top-tabs';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import {Colors} from '@/styles';
-import {Account, Timeline, Home} from '@/components/icons';
+import { View, TouchableOpacity, Platform } from 'react-native';
+import { MaterialTopTabBarProps } from '@react-navigation/material-top-tabs';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { Colors } from '@/styles';
+import { Account, Timeline, Home } from '@/components/icons';
 
 export const TABBAR_HEIGHT = Platform.OS === 'ios' ? 90 : 60;
 
-function TabBar({state, descriptors, navigation}: MaterialTopTabBarProps) {
+function TabBar({ state, descriptors, navigation }: MaterialTopTabBarProps) {
   const insets = useSafeAreaInsets();
   return (
     <View
@@ -20,7 +20,7 @@ function TabBar({state, descriptors, navigation}: MaterialTopTabBarProps) {
         height: TABBAR_HEIGHT,
       }}>
       {state.routes.map((route, index) => {
-        const {options} = descriptors[route.key];
+        const { options } = descriptors[route.key];
 
         let Icon: React.ElementType = Account;
         switch (route.name) {
@@ -60,7 +60,7 @@ function TabBar({state, descriptors, navigation}: MaterialTopTabBarProps) {
           <TouchableOpacity
             key={index}
             accessibilityRole="button"
-            accessibilityState={isFocused ? {selected: true} : {}}
+            accessibilityState={isFocused ? { selected: true } : {}}
             accessibilityLabel={options.tabBarAccessibilityLabel}
             testID={options.tabBarTestID}
             onPress={onPress}

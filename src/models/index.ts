@@ -1,7 +1,7 @@
-import {createContext, useContext} from 'react';
-import {types, Instance} from 'mobx-state-tree';
-import {GoogleSignin} from '@react-native-google-signin/google-signin';
-import {User} from './user';
+import { createContext, useContext } from 'react';
+import { types, Instance } from 'mobx-state-tree';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import { User } from './user';
 
 const RootStore = types.model({
   user: types.optional(User, {}),
@@ -24,6 +24,8 @@ export default RootStore;
 
 export function useStore(): RootStoreType {
   const store = useContext(RootStoreContext);
-  if (!store) throw new Error('Store is not provided');
+  if (!store) {
+    throw new Error('Store is not provided');
+  }
   return store;
 }

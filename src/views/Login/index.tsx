@@ -1,12 +1,15 @@
-import React, {useEffect} from 'react';
-import {SafeAreaView} from 'react-native-safe-area-context';
-import {Text, Button} from 'react-native-elements';
-import {useNavigation, CompositeNavigationProp} from '@react-navigation/native';
-import {StackNavigationProp} from '@react-navigation/stack';
-import type {LoginStackProps, RootStackProps} from '@/navigation';
-import {observer} from 'mobx-react-lite';
+import React, { useEffect } from 'react';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { Text, Button } from 'react-native-elements';
+import {
+  useNavigation,
+  CompositeNavigationProp,
+} from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import type { LoginStackProps, RootStackProps } from '@/navigation';
+import { observer } from 'mobx-react-lite';
 
-import {useStore} from '@/models';
+import { useStore } from '@/models';
 
 type NavigaitonProps = CompositeNavigationProp<
   StackNavigationProp<RootStackProps>,
@@ -41,8 +44,8 @@ function Login() {
           navigation.navigate('MainStack');
         }
       })
-      .catch(err => {
-        // Giriş sırasında hata oluşursa
+      .catch(_err => {
+        // Giriş yaparken hata olursa
       });
   };
 
