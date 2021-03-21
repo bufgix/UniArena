@@ -9,12 +9,12 @@ import LoginScreen from '@/views/Login/index';
 import FeedScreen from '@/views/Main/Feed';
 import ProfileScreen from '@/views/Main/Profile';
 import RanksScreen from '@/views/Main/Ranks';
-import {Colors} from '@/styles';
+import WelcomeScreen from '@/views/Login/Welcome';
 
 // navigation types
 export type RootStackProps = {
-  Login: LoginStackProps;
-  Main: BottomBarProps | undefined;
+  LoginStack: LoginStackProps;
+  MainStack: BottomBarProps | undefined;
 };
 
 export type BottomBarProps = {
@@ -25,6 +25,7 @@ export type BottomBarProps = {
 
 export type LoginStackProps = {
   LoginScreen: undefined;
+  Welcome: undefined;
 };
 
 const RootStack = createStackNavigator<RootStackProps>();
@@ -34,8 +35,8 @@ const LoginStack = createStackNavigator<LoginStackProps>();
 export const RootStackScreen = () => {
   return (
     <RootStack.Navigator headerMode="none">
-      <RootStack.Screen name="Login" component={LoginStackScreen} />
-      <RootStack.Screen name="Main" component={BottomBarScreen} />
+      <RootStack.Screen name="LoginStack" component={LoginStackScreen} />
+      <RootStack.Screen name="MainStack" component={BottomBarScreen} />
     </RootStack.Navigator>
   );
 };
@@ -54,6 +55,7 @@ export const LoginStackScreen = () => {
   return (
     <LoginStack.Navigator headerMode="none">
       <LoginStack.Screen name="LoginScreen" component={LoginScreen} />
+      <LoginStack.Screen name="Welcome" component={WelcomeScreen} />
     </LoginStack.Navigator>
   );
 };

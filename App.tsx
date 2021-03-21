@@ -13,18 +13,21 @@ import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {NavigationContainer} from '@react-navigation/native';
 import {RootStackScreen} from '@/navigation';
 import {ThemeProvider} from 'react-native-elements';
-import Icon from 'react-native-vector-icons/MaterialIcons';
 
-Icon.loadFont();
+import {StoreProvider, initStore} from '@/models';
+
+const store = initStore();
 
 const App = () => {
   return (
     <SafeAreaProvider>
-      <ThemeProvider>
-        <NavigationContainer>
-          <RootStackScreen />
-        </NavigationContainer>
-      </ThemeProvider>
+      <StoreProvider value={store}>
+        <ThemeProvider>
+          <NavigationContainer>
+            <RootStackScreen />
+          </NavigationContainer>
+        </ThemeProvider>
+      </StoreProvider>
     </SafeAreaProvider>
   );
 };
