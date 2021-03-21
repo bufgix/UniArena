@@ -2,9 +2,9 @@ import React, {useState} from 'react';
 import {SafeAreaView} from 'react-native';
 import {Button, Input} from 'react-native-elements';
 import {observer} from 'mobx-react-lite';
-import {useNavigation, CompositeNavigationProp} from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
-import type {LoginStackProps, RootStackProps} from '@/navigation';
+import type {RootStackProps} from '@/navigation';
 
 import {useStore} from '@/models';
 
