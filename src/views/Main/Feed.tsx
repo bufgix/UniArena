@@ -1,12 +1,31 @@
 import React from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {Text, Button} from 'react-native-elements';
+import {useNavigation} from '@react-navigation/native';
+import {StackNavigationProp} from '@react-navigation/stack';
+import type {RootStackProps} from '@/navigation';
+import {observer} from 'mobx-react-lite';
 
-export default function Feed() {
+import {useStore} from '@/models';
+
+type NavigaitonProps = StackNavigationProp<RootStackProps, 'MainStack'>;
+
+function Feed() {
+  const navigation = useNavigation<NavigaitonProps>();
+  const store = useStore();
+
+  const doLogout = () => {
+    store.user.logout().then(() => {
+      navigation.navigate('LoginStack', {screen: 'LoginScreen'});
+    });
+  };
+
   return (
     <SafeAreaView>
       <Text h1>Feed</Text>
-
+      <Button title="Log out" onPress={doLogout} />
     </SafeAreaView>
   );
 }
+
+export default observer(Feed);

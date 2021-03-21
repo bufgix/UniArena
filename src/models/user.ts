@@ -7,11 +7,14 @@ import auth from '@react-native-firebase/auth';
 import type {FirebaseAuthTypes} from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 
+type UserDocType = {
+  nickname: string;
+};
+
 export const User = types
   .model({
     nickname: types.optional(types.string, ''),
     level: types.optional(types.number, 0),
-    isLogin: types.optional(types.boolean, false),
     googleData: types.maybeNull(types.frozen<FirebaseAuthTypes.User>()),
   })
   .actions(self => ({
@@ -46,6 +49,28 @@ export const User = types
       yield firestore().collection('users').doc(self.googleData?.uid).set({
         nickname,
       });
+    }),
+    loginCheck: flow(function* () {
+      const isLogged = yield* toGenerator(GoogleSignin.isSignedIn());
+      if (isLogged) {
+        self.googleData = auth().currentUser;
+        return true;
+      }
+      return false;
+    }),
+    loadAdditionalData: flow(function* () {
+      const response = yield* toGenerator(
+        firestore().collection('users').doc(self.googleData?.uid).get(),
+      );
+      const data = response.data() as UserDocType;
+      self.nickname = data.nickname;
+    }),
+    logout: flow(function* () {
+      yield GoogleSignin.revokeAccess();
+      yield GoogleSignin.signOut();
+      self.googleData = null;
+      self.nickname = '';
+      self.level = 0;
     }),
   }));
 

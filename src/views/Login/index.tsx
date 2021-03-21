@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {Text, Button} from 'react-native-elements';
 import {useNavigation, CompositeNavigationProp} from '@react-navigation/native';
@@ -17,18 +17,33 @@ function Login() {
   const navigation = useNavigation<NavigaitonProps>();
   const store = useStore();
 
-  const doLogin = () => {
-    store.user.googleLogin().then(googleData => {
-      if (googleData?.additionalUserInfo?.isNewUser) {
-        // eger yeni üyse, nick ve avatar seçme ekranına gidilecek
-        navigation.navigate('Welcome');
-      } else {
-        // yeni üye değilse direkt olarak maine gidilecek
-        navigation.navigate('MainStack');
+  useEffect(() => {
+    // Eğer halihazırda giriş yapılmış ise
+    // ana sayfaya yönlendir
+    store.user.loginCheck().then(res => {
+      if (res) {
+        store.user
+          .loadAdditionalData()
+          .then(() => navigation.navigate('MainStack'));
       }
-    }).catch(err => {
-      // Giriş sırasında hata oluşursa
-    })
+    });
+  }, []);
+
+  const doLogin = () => {
+    store.user
+      .googleLogin()
+      .then(googleData => {
+        if (googleData?.additionalUserInfo?.isNewUser) {
+          // eger yeni üyse, nick ve avatar seçme ekranına gidilecek
+          navigation.navigate('Welcome');
+        } else {
+          // yeni üye değilse direkt olarak maine gidilecek
+          navigation.navigate('MainStack');
+        }
+      })
+      .catch(err => {
+        // Giriş sırasında hata oluşursa
+      });
   };
 
   return (
