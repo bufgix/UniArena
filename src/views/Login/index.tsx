@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
+import { StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Text, Button } from 'react-native-elements';
+import { Button } from 'react-native-elements';
 import {
   useNavigation,
   CompositeNavigationProp,
@@ -10,6 +11,7 @@ import type { LoginStackProps, RootStackProps } from '@/navigation';
 import { observer } from 'mobx-react-lite';
 
 import { useStore } from '@/models';
+import { Shield, Swords } from '@/components/icons';
 
 type NavigaitonProps = CompositeNavigationProp<
   StackNavigationProp<RootStackProps>,
@@ -50,11 +52,49 @@ function Login() {
   };
 
   return (
-    <SafeAreaView>
-      <Text h1>Login</Text>
-      <Button title="Press Me" onPress={doLogin} />
+    <SafeAreaView style={styles.container}>
+      <View style={styles.logo}>
+        <Shield />
+      </View>
+      <View style={styles.swords}>
+        <Swords />
+      </View>
+      <Button
+        title="Giriş Yap"
+        buttonStyle={styles.button}
+        titleStyle={styles.buttonText}
+        onPress={doLogin}
+      />
     </SafeAreaView>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: '#B52525',
+    flex: 1,
+    justifyContent: 'space-evenly',
+  },
+
+  logo: {
+    maxHeight: 350,
+  },
+
+  swords: {
+    maxHeight: 220,
+  },
+
+  button: {
+    borderRadius: 10,
+    backgroundColor: '#fff',
+    height: 50,
+    marginHorizontal: '25%',
+  },
+
+  buttonText: {
+    color: '#B52525',
+    fontWeight: 'bold',
+  },
+});
 
 export default observer(Login);
