@@ -7,12 +7,14 @@ import type { RootStackProps } from '@/navigation';
 import { observer } from 'mobx-react-lite';
 
 import { useStore } from '@/models';
+import { useStatusBar } from '@/utils/hooks';
 
 type NavigaitonProps = StackNavigationProp<RootStackProps, 'MainStack'>;
 
 function Feed() {
   const navigation = useNavigation<NavigaitonProps>();
   const store = useStore();
+  useStatusBar('dark-content');
 
   const doLogout = () => {
     store.user.logout().then(() => {

@@ -11,6 +11,7 @@ import type { LoginStackProps, RootStackProps } from '@/navigation';
 import { observer } from 'mobx-react-lite';
 
 import { useStore } from '@/models';
+import { useStatusBar } from '@/utils/hooks';
 import { Shield, Swords } from '@/components/icons';
 import { Colors, Helpers, Spacing } from '@/styles';
 
@@ -22,6 +23,7 @@ type NavigaitonProps = CompositeNavigationProp<
 function Login() {
   const navigation = useNavigation<NavigaitonProps>();
   const store = useStore();
+  useStatusBar('light-content', true);
 
   useEffect(() => {
     // Eğer halihazırda giriş yapılmış ise
