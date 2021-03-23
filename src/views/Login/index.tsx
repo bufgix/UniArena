@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Button } from 'react-native-elements';
@@ -9,6 +9,8 @@ import {
 import { StackNavigationProp } from '@react-navigation/stack';
 import type { LoginStackProps, RootStackProps } from '@/navigation';
 import { observer } from 'mobx-react-lite';
+
+import * as Icons from '@/components/icons';
 
 import { useStore } from '@/models';
 import { useStatusBar } from '@/utils/hooks';
@@ -25,6 +27,8 @@ function Login() {
   const store = useStore();
   useStatusBar('light-content', true);
 
+  const [loading, setLoading] = useState<boolean>(false);
+
   useEffect(() => {
     // Eğer halihazırda giriş yapılmış ise
     // ana sayfaya yönlendir
@@ -38,6 +42,7 @@ function Login() {
   }, []);
 
   const doLogin = () => {
+    setLoading(true);
     store.user
       .googleLogin()
       .then(googleData => {
@@ -51,7 +56,8 @@ function Login() {
       })
       .catch(_err => {
         // Giriş yaparken hata olursa
-      });
+      })
+      .finally(() => setLoading(false));
   };
 
   return (
@@ -64,6 +70,11 @@ function Login() {
       </View>
       <Button
         title="Giriş Yap"
+        icon={
+          <Icons.Google height={30} width={30} style={{ marginRight: 10 }} />
+        }
+        loading={loading}
+        loadingProps={{ color: Colors.Primary }}
         buttonStyle={styles.button}
         titleStyle={styles.buttonText}
         onPress={doLogin}
