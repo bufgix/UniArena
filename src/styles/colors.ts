@@ -2,7 +2,7 @@ const ColorAlpha = (color: string, alpha: number): string =>
   `${color}${Math.floor(alpha * 255).toString(16)}`;
 
 const ColorDark = '#1F1F1F';
-const ColorPrimary = '#36A8FC';
+const ColorPrimary = '#B52525';
 const ColorSecondary = '#EC407A';
 const ColorWhite = '#FFFFFF';
 

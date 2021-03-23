@@ -12,6 +12,7 @@ import { observer } from 'mobx-react-lite';
 
 import { useStore } from '@/models';
 import { Shield, Swords } from '@/components/icons';
+import { Colors, Helpers, Spacing } from '@/styles';
 
 type NavigaitonProps = CompositeNavigationProp<
   StackNavigationProp<RootStackProps>,
@@ -71,28 +72,29 @@ function Login() {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#B52525',
-    flex: 1,
-    justifyContent: 'space-evenly',
+    ...Helpers.fill,
+    backgroundColor: Colors.Primary,
   },
-
   logo: {
-    maxHeight: 350,
+    marginTop: Spacing.normal,
+    height: 350,
   },
 
   swords: {
-    maxHeight: 220,
+    marginTop: Spacing.normal,
+    height: 210,
   },
-
   button: {
+    ...Helpers.selfCenter,
+    marginTop: Spacing.large,
+    backgroundColor: Colors.White,
+    width: 200,
+    paddingVertical: Spacing.normal,
     borderRadius: 10,
-    backgroundColor: '#fff',
-    height: 50,
-    marginHorizontal: '25%',
   },
 
   buttonText: {
-    color: '#B52525',
+    color: Colors.Primary,
     fontWeight: 'bold',
   },
 });

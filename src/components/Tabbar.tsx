@@ -1,8 +1,8 @@
 import React from 'react';
-import { View, TouchableOpacity, Platform } from 'react-native';
+import { View, TouchableOpacity, Platform, StyleSheet } from 'react-native';
 import { MaterialTopTabBarProps } from '@react-navigation/material-top-tabs';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { Colors } from '@/styles';
+import { Colors, Helpers } from '@/styles';
 import { Account, Timeline, Home } from '@/components/icons';
 
 export const TABBAR_HEIGHT = Platform.OS === 'ios' ? 90 : 60;
@@ -10,15 +10,7 @@ export const TABBAR_HEIGHT = Platform.OS === 'ios' ? 90 : 60;
 function TabBar({ state, descriptors, navigation }: MaterialTopTabBarProps) {
   const insets = useSafeAreaInsets();
   return (
-    <View
-      style={{
-        flexDirection: 'row',
-        paddingBottom: insets.bottom,
-        paddingTop: Platform.OS === 'ios' ? 20 : 0,
-        borderTopWidth: 1,
-        borderTopColor: Colors.Dark20,
-        height: TABBAR_HEIGHT,
-      }}>
+    <View style={[styles.container, { paddingBottom: insets.bottom }]}>
       {state.routes.map((route, index) => {
         const { options } = descriptors[route.key];
 
@@ -65,11 +57,7 @@ function TabBar({ state, descriptors, navigation }: MaterialTopTabBarProps) {
             testID={options.tabBarTestID}
             onPress={onPress}
             onLongPress={onLongPress}
-            style={{
-              flex: 1,
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}>
+            style={styles.item}>
             <Icon
               height={30}
               width={30}
@@ -81,5 +69,19 @@ function TabBar({ state, descriptors, navigation }: MaterialTopTabBarProps) {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    ...Helpers.row,
+    paddingTop: Platform.OS === 'ios' ? 20 : 0,
+    borderTopWidth: 1,
+    borderTopColor: Colors.Dark20,
+    height: TABBAR_HEIGHT,
+  },
+  item: {
+    ...Helpers.fill,
+    ...Helpers.center,
+  },
+});
 
 export default TabBar;
