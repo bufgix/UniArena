@@ -66,7 +66,6 @@ export const User = types
       self.nickname = data.nickname;
     }),
     logout: flow(function* () {
-      yield GoogleSignin.revokeAccess();
       yield GoogleSignin.signOut();
       self.googleData = null;
       self.nickname = '';
