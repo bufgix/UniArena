@@ -3,7 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { NavigatorScreenParams } from '@react-navigation/native';
 
-import { TabBard } from '@/components';
+import { TabBar } from '@/components';
 
 import LoginScreen from '@/views/Login/index';
 
@@ -44,7 +44,7 @@ export const RootStackScreen = () => {
 
 export const BottomBarScreen = () => {
   return (
-    <BottomBar.Navigator tabBarPosition="bottom" tabBar={TabBard}>
+    <BottomBar.Navigator tabBarPosition="bottom" tabBar={TabBar}>
       <BottomBar.Screen name="Feed" component={FeedScreen} />
       <BottomBar.Screen name="Ranks" component={RanksScreen} />
       <BottomBar.Screen name="Profile" component={ProfileScreen} />
