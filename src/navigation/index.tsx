@@ -1,4 +1,5 @@
 import React from 'react';
+import { StatusBar } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { NavigatorScreenParams } from '@react-navigation/native';
@@ -35,10 +36,13 @@ const LoginStack = createStackNavigator<LoginStackProps>();
 
 export const RootStackScreen = () => {
   return (
-    <RootStack.Navigator headerMode="none">
-      <RootStack.Screen name="LoginStack" component={LoginStackScreen} />
-      <RootStack.Screen name="MainStack" component={BottomBarScreen} />
-    </RootStack.Navigator>
+    <>
+      <StatusBar translucent backgroundColor="transparent" />
+      <RootStack.Navigator headerMode="none">
+        <RootStack.Screen name="LoginStack" component={LoginStackScreen} />
+        <RootStack.Screen name="MainStack" component={BottomBarScreen} />
+      </RootStack.Navigator>
+    </>
   );
 };
 

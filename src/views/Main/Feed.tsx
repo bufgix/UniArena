@@ -14,7 +14,7 @@ type NavigaitonProps = StackNavigationProp<RootStackProps, 'MainStack'>;
 function Feed() {
   const navigation = useNavigation<NavigaitonProps>();
   const store = useStore();
-  useStatusBar('dark-content');
+  useStatusBar('dark-content', true);
 
   const doLogout = () => {
     store.user.logout().then(() => {

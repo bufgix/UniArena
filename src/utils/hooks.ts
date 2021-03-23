@@ -7,7 +7,6 @@ function useStatusBar(
   animated: boolean = false,
 ) {
   const navigation = useNavigation();
-
   useEffect(() => {
     const uns = navigation.addListener('focus', () => {
       StatusBar.setBarStyle(theme, animated);
