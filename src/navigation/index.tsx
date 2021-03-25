@@ -1,17 +1,18 @@
 import React from 'react';
-import { StatusBar } from 'react-native';
+import { StatusBar, View } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigatorScreenParams } from '@react-navigation/native';
 
 import { TabBar } from '@/components';
 
 import LoginScreen from '@/views/Login/index';
-
 import FeedScreen from '@/views/Main/Feed';
 import ProfileScreen from '@/views/Main/Profile';
 import RanksScreen from '@/views/Main/Ranks';
 import WelcomeScreen from '@/views/Login/Welcome';
+import Settings from '@/views/Settings';
 
 // navigation types
 export type RootStackProps = {
@@ -30,9 +31,15 @@ export type LoginStackProps = {
   Welcome: undefined;
 };
 
+export type DrawerStackProp = {
+  Ranks: undefined;
+  Settings: undefined;
+};
+
 const RootStack = createStackNavigator<RootStackProps>();
 const BottomBar = createMaterialTopTabNavigator<BottomBarProps>();
 const LoginStack = createStackNavigator<LoginStackProps>();
+const Drawer = createDrawerNavigator<DrawerStackProp>();
 
 export const RootStackScreen = () => {
   return (
@@ -49,10 +56,19 @@ export const RootStackScreen = () => {
 export const BottomBarScreen = () => {
   return (
     <BottomBar.Navigator tabBarPosition="bottom" tabBar={TabBar}>
+      <BottomBar.Screen name="Ranks" component={DrawerStackScreen} />
       <BottomBar.Screen name="Feed" component={FeedScreen} />
-      <BottomBar.Screen name="Ranks" component={RanksScreen} />
       <BottomBar.Screen name="Profile" component={ProfileScreen} />
     </BottomBar.Navigator>
+  );
+};
+
+export const DrawerStackScreen = () => {
+  return (
+    <Drawer.Navigator initialRouteName="Ranks">
+      <Drawer.Screen name="Ranks" component={RanksScreen} />
+      <Drawer.Screen name="Settings" component={Settings} />
+    </Drawer.Navigator>
   );
 };
 
