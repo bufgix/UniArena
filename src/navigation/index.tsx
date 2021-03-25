@@ -1,5 +1,5 @@
 import React from 'react';
-import { StatusBar, View } from 'react-native';
+import { StatusBar } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { createDrawerNavigator } from '@react-navigation/drawer';
@@ -13,6 +13,8 @@ import ProfileScreen from '@/views/Main/Profile';
 import RanksScreen from '@/views/Main/Ranks';
 import WelcomeScreen from '@/views/Login/Welcome';
 import Settings from '@/views/Settings';
+
+import { useStatusBar } from '@/utils/hooks';
 
 // navigation types
 export type RootStackProps = {
@@ -54,6 +56,7 @@ export const RootStackScreen = () => {
 };
 
 export const BottomBarScreen = () => {
+  useStatusBar('dark-content');
   return (
     <BottomBar.Navigator tabBarPosition="bottom" tabBar={TabBar}>
       <BottomBar.Screen name="Ranks" component={DrawerStackScreen} />
