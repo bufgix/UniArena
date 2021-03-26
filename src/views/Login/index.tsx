@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.Primary,
   },
   logo: {
-    marginTop: Spacing.normal,
+    marginTop: Spacing.medium,
     height: 350,
   },
 

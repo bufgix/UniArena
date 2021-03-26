@@ -1,6 +1,8 @@
-export { default as Google } from './Google';
-export { default as Account } from './Account';
-export { default as Home } from './Home';
-export { default as Shield } from './Shield';
-export { default as Swords } from './Swords';
-export { default as Timeline } from './Timeline';
+export { default as Account } from './Account'
+export { default as Bolt } from './Bolt'
+export { default as Cup } from './Cup'
+export { default as Google } from './Google'
+export { default as Home } from './Home'
+export { default as Shield } from './Shield'
+export { default as Swords } from './Swords'
+export { default as Timeline } from './Timeline'
