@@ -19,7 +19,7 @@ function TabBar({ state, descriptors, navigation }: MaterialTopTabBarProps) {
           case 'Feed':
             Icon = Home;
             break;
-          case 'Ranks':
+          case 'Timeline':
             Icon = Timeline;
             break;
           case 'Profile':

@@ -36,7 +36,7 @@ function Login() {
       if (res) {
         store.user
           .loadAdditionalData()
-          .then(() => navigation.navigate('MainStack'));
+          .then(() => navigation.navigate('MainStack', { screen: 'Timeline' }));
       }
     });
   }, []);
