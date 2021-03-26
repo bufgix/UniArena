@@ -17,6 +17,7 @@ export default {
   Dark60: ColorAlpha(ColorDark, 0.6),
   Dark70: ColorAlpha(ColorDark, 0.7),
 
+  
   White: ColorWhite,
   White60: ColorAlpha(ColorWhite, 0.6),
 

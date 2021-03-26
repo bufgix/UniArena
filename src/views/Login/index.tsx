@@ -36,7 +36,7 @@ function Login() {
       if (res) {
         store.user
           .loadAdditionalData()
-          .then(() => navigation.navigate('MainStack', { screen: 'Ranks' }));
+          .then(() => navigation.navigate('MainStack', { screen: 'Timeline' }));
       }
     });
   }, []);
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.Primary,
   },
   logo: {
-    marginTop: Spacing.normal,
+    marginTop: Spacing.medium,
     height: 350,
   },
 
