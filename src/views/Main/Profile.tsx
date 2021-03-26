@@ -21,18 +21,15 @@ export default function Profile() {
         containerStyle={styles.avatar}
       />
       <Text style={styles.name}>Margin20</Text>
+
       <View style={styles.header}>
         <View style={styles.status}>
           <Icons.Cup color={Colors.PrimaryDisable} height={30} width={30} />
-          <Text style={styles.count}>
-            Kazanılan Kupa <Text style={Fonts.style.bold}>33</Text>
-          </Text>
+          <Text style={styles.count}>33</Text>
         </View>
         <View style={styles.status}>
           <Icons.Bolt color={Colors.PrimaryDisable} height={30} width={30} />
-          <Text style={styles.count}>
-            Çözülen Soru <Text style={Fonts.style.bold}>85</Text>
-          </Text>
+          <Text style={styles.count}>85</Text>
         </View>
       </View>
     </SafeAreaView>
@@ -43,7 +40,7 @@ const styles = StyleSheet.create({
   container: {
     ...Helpers.fill,
     backgroundColor: Colors.White,
-    paddingHorizontal: spacing.medium,
+    paddingHorizontal: spacing.small,
   },
   avatar: {
     marginTop: Spacing.medium,
@@ -52,7 +49,7 @@ const styles = StyleSheet.create({
   header: {
     ...Helpers.row,
     marginTop: Spacing.medium,
-    ...Helpers.mainSpaceBetween,
+    ...Helpers.mainSpaceAround,
   },
   status: {
     ...Helpers.rowCross,
@@ -60,7 +57,7 @@ const styles = StyleSheet.create({
   count: {
     ...Fonts.style.normal,
     marginLeft: spacing.tiny,
-    color: Colors.PrimaryDisable,
+    color: Colors.Dark,
     fontWeight: 'bold',
   },
   name: {
