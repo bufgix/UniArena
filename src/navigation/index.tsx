@@ -5,7 +5,7 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigatorScreenParams } from '@react-navigation/native';
 
-import { TabBar } from '@/components';
+import { TabBar, DrawerContent } from '@/components';
 
 import LoginScreen from '@/views/Login/index';
 import FeedScreen from '@/views/Main/Feed';
@@ -24,7 +24,7 @@ export type RootStackProps = {
 
 export type BottomBarProps = {
   Feed: undefined;
-  Ranks: undefined;
+  Timeline: undefined;
   Profile: undefined;
 };
 
@@ -59,7 +59,7 @@ export const BottomBarScreen = () => {
   useStatusBar('dark-content');
   return (
     <BottomBar.Navigator tabBarPosition="bottom" tabBar={TabBar}>
-      <BottomBar.Screen name="Ranks" component={DrawerStackScreen} />
+      <BottomBar.Screen name="Timeline" component={DrawerStackScreen} />
       <BottomBar.Screen name="Feed" component={FeedScreen} />
       <BottomBar.Screen name="Profile" component={ProfileScreen} />
     </BottomBar.Navigator>
@@ -68,7 +68,9 @@ export const BottomBarScreen = () => {
 
 export const DrawerStackScreen = () => {
   return (
-    <Drawer.Navigator initialRouteName="Ranks">
+    <Drawer.Navigator
+      initialRouteName="Ranks"
+      drawerContent={props => <DrawerContent {...props} />}>
       <Drawer.Screen name="Ranks" component={RanksScreen} />
       <Drawer.Screen name="Settings" component={Settings} />
     </Drawer.Navigator>
