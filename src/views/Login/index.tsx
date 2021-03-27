@@ -60,13 +60,15 @@ function Login() {
           // eger yeni üyse, nick ve avatar seçme ekranına gidilecek
           navigation.navigate('Welcome');
         } else {
-          // yeni üye değilse direkt olarak maine gidilecek
-          navigation.dispatch(
-            CommonActions.reset({
-              index: 0,
-              routes: [{ name: 'MainStack' }],
-            }),
-          );
+          store.user.loadAdditionalData().then(() => {
+            // yeni üye değilse direkt olarak maine gidilecek
+            navigation.dispatch(
+              CommonActions.reset({
+                index: 0,
+                routes: [{ name: 'MainStack' }],
+              }),
+            );
+          });
         }
       })
       .catch(_err => {

@@ -4,23 +4,28 @@ import { Avatar, Text } from 'react-native-elements';
 import { StatusBar } from 'react-native';
 import { View } from 'react-native';
 import { StyleSheet } from 'react-native';
+import { useStore } from '@/models';
 import { Colors, Helpers, Spacing, Fonts } from '@/styles';
 import * as Icons from '@/components/icons';
 import spacing from '@/styles/spacing';
 
 export default function Profile() {
+  const store = useStore();
+  const profilePicture = store.user.googleData?.photoURL;
+  const nickname = store.user.nickname;
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar translucent />
       <Avatar
         size="xlarge"
         rounded
+        title="MT"
         source={{
-          uri: 'https://www.betikblog.com/Gungor.png',
+          uri: profilePicture ? profilePicture : '',
         }}
         containerStyle={styles.avatar}
       />
-      <Text style={styles.name}>Margin20</Text>
+      <Text style={styles.name}>{nickname}</Text>
 
       <View style={styles.header}>
         <View style={styles.status}>
