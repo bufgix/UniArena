@@ -5,6 +5,7 @@ export { default as Account } from './Account';
 export { default as Bolt } from './Bolt';
 export { default as Cup } from './Cup';
 export { default as Home } from './Home';
+export { default as Logout } from './Logout';
 export { default as Settings } from './Settings';
 export { default as Shield } from './Shield';
 export { default as Swords } from './Swords';

@@ -2,19 +2,29 @@ import React from 'react';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { Text } from 'react-native-elements';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { useNavigation } from '@react-navigation/native';
+import {
+  useNavigation,
+  CompositeNavigationProp,
+  DrawerActions,
+} from '@react-navigation/native';
 import {
   DrawerContentComponentProps,
   DrawerContentScrollView,
 } from '@react-navigation/drawer';
 import { SvgProps } from 'react-native-svg';
+import { observer } from 'mobx-react-lite';
+
+import { useStore } from '@/models';
 import { Colors, Helpers } from '@/styles';
 import * as Icons from '@/components/icons';
-import { DrawerStackProp } from '@/navigation';
+import { DrawerStackProp, RootStackProps } from '@/navigation';
 import helpers from '@/styles/helpers';
 import spacing from '@/styles/spacing';
 
-type NavigaitonProps = StackNavigationProp<DrawerStackProp>;
+type NavigaitonProps = CompositeNavigationProp<
+  StackNavigationProp<DrawerStackProp>,
+  StackNavigationProp<RootStackProps>
+>;
 
 type TabUnion = keyof DrawerStackProp;
 
@@ -23,8 +33,16 @@ const DRAWER_ICONS: Record<TabUnion, React.ElementType<SvgProps>> = {
   Ranks: Icons.Timeline,
 };
 
-export default function DrawerContent({ state }: DrawerContentComponentProps) {
+function DrawerContent({ state }: DrawerContentComponentProps) {
   const navigation = useNavigation<NavigaitonProps>();
+  const store = useStore();
+
+  const doLogout = () => {
+    store.user.logout().then(() => {
+      navigation.dispatch(DrawerActions.closeDrawer());
+      navigation.navigate('LoginStack', { screen: 'LoginScreen' });
+    });
+  };
 
   return (
     <DrawerContentScrollView>
@@ -56,6 +74,14 @@ export default function DrawerContent({ state }: DrawerContentComponentProps) {
               </TouchableOpacity>
             );
           })}
+          <TouchableOpacity style={styles.item} onPress={doLogout}>
+            <Icons.Logout
+              height={30}
+              width={30}
+              color={Colors.PrimaryDisable}
+            />
+            <Text style={styles.itemText}>Çıkış Yap</Text>
+          </TouchableOpacity>
         </View>
       </View>
       <Text style={styles.version}>v1.0.0</Text>
@@ -84,3 +110,5 @@ const styles = StyleSheet.create({
     ...helpers.selfCenter,
   },
 });
+
+export default observer(DrawerContent);
