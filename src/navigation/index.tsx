@@ -58,7 +58,10 @@ export const RootStackScreen = () => {
 export const BottomBarScreen = () => {
   useStatusBar('dark-content');
   return (
-    <BottomBar.Navigator tabBarPosition="bottom" tabBar={TabBar}>
+    <BottomBar.Navigator
+      initialRouteName="Timeline"
+      tabBarPosition="bottom"
+      tabBar={TabBar}>
       <BottomBar.Screen name="Timeline" component={DrawerStackScreen} />
       <BottomBar.Screen name="Feed" component={FeedScreen} />
       <BottomBar.Screen name="Profile" component={ProfileScreen} />

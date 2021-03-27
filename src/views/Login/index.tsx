@@ -5,6 +5,7 @@ import { Button } from 'react-native-elements';
 import {
   useNavigation,
   CompositeNavigationProp,
+  CommonActions,
 } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import type { LoginStackProps, RootStackProps } from '@/navigation';
@@ -32,11 +33,21 @@ function Login() {
   useEffect(() => {
     // Eğer halihazırda giriş yapılmış ise
     // ana sayfaya yönlendir
+
     store.user.loginCheck().then(res => {
       if (res) {
+        setLoading(true);
         store.user
           .loadAdditionalData()
-          .then(() => navigation.navigate('MainStack', { screen: 'Timeline' }));
+          .then(() => {
+            navigation.dispatch(
+              CommonActions.reset({
+                index: 0,
+                routes: [{ name: 'MainStack' }],
+              }),
+            );
+          })
+          .finally(() => setLoading(false));
       }
     });
   }, []);
@@ -51,7 +62,7 @@ function Login() {
           navigation.navigate('Welcome');
         } else {
           // yeni üye değilse direkt olarak maine gidilecek
-          navigation.navigate('MainStack');
+          navigation.navigate('MainStack', { screen: 'Timeline' });
         }
       })
       .catch(_err => {
@@ -70,6 +81,7 @@ function Login() {
         <Swords />
       </View>
       <Button
+        disabled={loading}
         title="Giriş Yap"
         icon={
           <Icons.Google height={30} width={30} style={{ marginRight: 10 }} />
