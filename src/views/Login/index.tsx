@@ -15,7 +15,6 @@ import * as Icons from '@/components/icons';
 
 import { useStore } from '@/models';
 import { useStatusBar } from '@/utils/hooks';
-import { Shield, Swords } from '@/components/icons';
 import { Colors, Helpers, Spacing } from '@/styles';
 
 type NavigaitonProps = CompositeNavigationProp<
@@ -80,10 +79,10 @@ function Login() {
     <SafeAreaView style={styles.container}>
       <StatusBar translucent />
       <View style={styles.logo}>
-        <Shield />
+        <Icons.Shield />
       </View>
       <View style={styles.swords}>
-        <Swords />
+        <Icons.Swords />
       </View>
       <Button
         disabled={loading}
@@ -106,12 +105,12 @@ const styles = StyleSheet.create({
   },
   logo: {
     marginTop: Spacing.medium,
-    height: 350,
+    height: '40%',
   },
 
   swords: {
     marginTop: Spacing.normal,
-    height: 210,
+    height: '30%',
   },
   button: {
     ...Helpers.selfCenter,
