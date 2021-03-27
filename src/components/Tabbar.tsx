@@ -58,11 +58,17 @@ function TabBar({ state, descriptors, navigation }: MaterialTopTabBarProps) {
             onPress={onPress}
             onLongPress={onLongPress}
             style={styles.item}>
-            <Icon
-              height={30}
-              width={30}
-              color={isFocused ? Colors.Primary : Colors.PrimaryDisable}
-            />
+            {route.name === 'Arena' ? (
+              <View style={styles.arenaWrapper}>
+                <Icon height={30} width={30} color={Colors.White} />
+              </View>
+            ) : (
+              <Icon
+                height={30}
+                width={30}
+                color={isFocused ? Colors.Primary : Colors.PrimaryDisable}
+              />
+            )}
           </TouchableOpacity>
         );
       })}
@@ -81,6 +87,13 @@ const styles = StyleSheet.create({
   item: {
     ...Helpers.fill,
     ...Helpers.center,
+  },
+  arenaWrapper: {
+    ...Helpers.center,
+    height: 50,
+    width: 50,
+    backgroundColor: Colors.Primary,
+    borderRadius: 99,
   },
 });
 
