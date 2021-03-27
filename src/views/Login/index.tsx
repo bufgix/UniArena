@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { StatusBar, StyleSheet } from 'react-native';
+import { StyleSheet, ImageBackground } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Button } from 'react-native-elements';
 import {
@@ -77,20 +77,22 @@ function Login() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar translucent />
+      <ImageBackground
+        style={styles.imageBg}
+        source={require('@/assets/images/login_bg.png')}>
+        <Icons.Logo height={305} width={305} />
 
-      <Icons.Logo height={305} width={305} />
-
-      <Button
-        disabled={loading}
-        title="Giriş Yap"
-        icon={<Icons.Google height={30} width={30} style={styles.icon} />}
-        loading={loading}
-        loadingProps={{ color: Colors.Primary }}
-        buttonStyle={styles.button}
-        titleStyle={styles.buttonText}
-        onPress={doLogin}
-      />
+        <Button
+          disabled={loading}
+          title="Giriş Yap"
+          icon={<Icons.Google height={30} width={30} style={styles.icon} />}
+          loading={loading}
+          loadingProps={{ color: Colors.Primary }}
+          buttonStyle={styles.button}
+          titleStyle={styles.buttonText}
+          onPress={doLogin}
+        />
+      </ImageBackground>
     </SafeAreaView>
   );
 }
@@ -98,9 +100,12 @@ function Login() {
 const styles = StyleSheet.create({
   container: {
     ...Helpers.fill,
-    alignItems: 'center',
-    justifyContent: 'space-around',
     backgroundColor: Colors.Primary,
+  },
+  imageBg: {
+    ...Helpers.fillCenter,
+    resizeMode: 'cover',
+    justifyContent: 'center',
   },
   button: {
     ...Helpers.selfCenter,

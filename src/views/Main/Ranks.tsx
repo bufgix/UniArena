@@ -15,7 +15,6 @@ export default function Ranks() {
     <SafeAreaView>
       <Text h1>Ranks</Text>
       <Button
-        disabled
         title="Open"
         onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}
       />
