@@ -27,6 +27,7 @@ export default {
   Green: '#4CAF50',
   DarkBlue: '#0B276A',
   InputDisable: '#F5F6F8',
+  OverlayColor: '#F5F6FA',
 
   Primary: ColorPrimary,
   PrimaryDisable: '#6F869D',
