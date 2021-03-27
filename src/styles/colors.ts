@@ -2,8 +2,8 @@ const ColorAlpha = (color: string, alpha: number): string =>
   `${color}${Math.floor(alpha * 255).toString(16)}`;
 
 const ColorDark = '#1F1F1F';
-const ColorPrimary = '#B52525';
-const ColorSecondary = '#EC407A';
+const ColorPrimary = '#536DFE';
+const ColorSecondary = '#F7E57C';
 const ColorWhite = '#FFFFFF';
 
 export default {
@@ -17,7 +17,6 @@ export default {
   Dark60: ColorAlpha(ColorDark, 0.6),
   Dark70: ColorAlpha(ColorDark, 0.7),
 
-  
   White: ColorWhite,
   White60: ColorAlpha(ColorWhite, 0.6),
 
@@ -30,7 +29,7 @@ export default {
   InputDisable: '#F5F6F8',
 
   Primary: ColorPrimary,
-  PrimaryDisable: 'rgba(98, 127, 174, 0.4)',
+  PrimaryDisable: '#6F869D',
   Secondary: ColorSecondary,
   PassivePrimary: '#B2D7FF',
 

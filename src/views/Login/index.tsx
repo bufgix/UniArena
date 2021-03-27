@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { StatusBar, StyleSheet, View } from 'react-native';
+import { StatusBar, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Button } from 'react-native-elements';
 import {
@@ -78,12 +78,9 @@ function Login() {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar translucent />
-      <View style={styles.logo}>
-        <Icons.Shield />
-      </View>
-      <View style={styles.swords}>
-        <Icons.Swords />
-      </View>
+
+      <Icons.Logo height={305} width={305} />
+
       <Button
         disabled={loading}
         title="Giriş Yap"
@@ -101,16 +98,9 @@ function Login() {
 const styles = StyleSheet.create({
   container: {
     ...Helpers.fill,
+    alignItems: 'center',
+    justifyContent: 'space-around',
     backgroundColor: Colors.Primary,
-  },
-  logo: {
-    marginTop: Spacing.medium,
-    height: '40%',
-  },
-
-  swords: {
-    marginTop: Spacing.normal,
-    height: '30%',
   },
   button: {
     ...Helpers.selfCenter,

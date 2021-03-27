@@ -47,12 +47,6 @@ function DrawerContent({ state }: DrawerContentComponentProps) {
   return (
     <DrawerContentScrollView>
       <View>
-        <Icons.LogoShield
-          color={Colors.Primary}
-          height={200}
-          width={200}
-          style={styles.header}
-        />
         <View style={styles.routes}>
           {state.routes.map((route, index) => {
             const onPress = () => {
