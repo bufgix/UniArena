@@ -30,7 +30,7 @@ type TabUnion = keyof DrawerStackProp;
 
 const DRAWER_ICONS: Record<TabUnion, React.ElementType<SvgProps>> = {
   Settings: Icons.Settings,
-  Ranks: Icons.Timeline,
+  Ranks: Icons.Crown,
 };
 
 function DrawerContent({ state }: DrawerContentComponentProps) {

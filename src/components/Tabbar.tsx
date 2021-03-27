@@ -3,7 +3,7 @@ import { View, TouchableOpacity, Platform, StyleSheet } from 'react-native';
 import { MaterialTopTabBarProps } from '@react-navigation/material-top-tabs';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Colors, Helpers } from '@/styles';
-import { Account, Timeline, Home } from '@/components/icons';
+import { Account, Helmet, Crown, Swords } from '@/components/icons';
 
 export const TABBAR_HEIGHT = Platform.OS === 'ios' ? 90 : 60;
 
@@ -17,13 +17,13 @@ function TabBar({ state, descriptors, navigation }: MaterialTopTabBarProps) {
         let Icon: React.ElementType = Account;
         switch (route.name) {
           case 'Arena':
-            Icon = Home;
+            Icon = Swords;
             break;
           case 'Timeline':
-            Icon = Timeline;
+            Icon = Crown;
             break;
           case 'Profile':
-            Icon = Icon;
+            Icon = Helmet;
             break;
         }
 
