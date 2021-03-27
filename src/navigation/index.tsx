@@ -87,8 +87,16 @@ export const DrawerStackScreen = () => {
     <Drawer.Navigator
       initialRouteName="Ranks"
       drawerContent={props => <DrawerContent {...props} />}>
-      <Drawer.Screen name="Ranks" component={RanksScreen} />
-      <Drawer.Screen name="Settings" component={Settings} />
+      <Drawer.Screen
+        name="Ranks"
+        component={RanksScreen}
+        options={{ title: 'Sıralamalar' }}
+      />
+      <Drawer.Screen
+        name="Settings"
+        component={Settings}
+        options={{ title: 'Ayarlar' }}
+      />
     </Drawer.Navigator>
   );
 };

@@ -33,7 +33,7 @@ const DRAWER_ICONS: Record<TabUnion, React.ElementType<SvgProps>> = {
   Ranks: Icons.Crown,
 };
 
-function DrawerContent({ state }: DrawerContentComponentProps) {
+function DrawerContent({ state, descriptors }: DrawerContentComponentProps) {
   const navigation = useNavigation<NavigaitonProps>();
   const store = useStore();
 
@@ -49,6 +49,7 @@ function DrawerContent({ state }: DrawerContentComponentProps) {
       <View>
         <View style={styles.routes}>
           {state.routes.map((route, index) => {
+            const { options } = descriptors[route.key];
             const onPress = () => {
               navigation.navigate(route.name as TabUnion);
             };
@@ -64,7 +65,7 @@ function DrawerContent({ state }: DrawerContentComponentProps) {
                   width={30}
                   color={isFocus ? Colors.Primary : Colors.PrimaryDisable}
                 />
-                <Text style={styles.itemText}>{route.name}</Text>
+                <Text style={styles.itemText}>{options.title}</Text>
               </TouchableOpacity>
             );
           })}
