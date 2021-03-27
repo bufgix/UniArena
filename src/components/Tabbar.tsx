@@ -16,7 +16,7 @@ function TabBar({ state, descriptors, navigation }: MaterialTopTabBarProps) {
 
         let Icon: React.ElementType = Account;
         switch (route.name) {
-          case 'Feed':
+          case 'Arena':
             Icon = Home;
             break;
           case 'Timeline':

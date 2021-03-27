@@ -8,7 +8,7 @@ import { NavigatorScreenParams } from '@react-navigation/native';
 import { TabBar, DrawerContent } from '@/components';
 
 import LoginScreen from '@/views/Login/index';
-import FeedScreen from '@/views/Main/Feed';
+import ArenaScreen from '@/views/Main/Arena';
 import ProfileScreen from '@/views/Main/Profile';
 import RanksScreen from '@/views/Main/Ranks';
 import WelcomeScreen from '@/views/Login/Welcome';
@@ -23,7 +23,7 @@ export type RootStackProps = {
 };
 
 export type BottomBarProps = {
-  Feed: undefined;
+  Arena: undefined;
   Timeline: undefined;
   Profile: undefined;
 };
@@ -38,10 +38,15 @@ export type DrawerStackProp = {
   Settings: undefined;
 };
 
+export type ArenaStackProps = {
+  Main: undefined;
+};
+
 const RootStack = createStackNavigator<RootStackProps>();
 const BottomBar = createMaterialTopTabNavigator<BottomBarProps>();
 const LoginStack = createStackNavigator<LoginStackProps>();
 const Drawer = createDrawerNavigator<DrawerStackProp>();
+const ArenaStack = createStackNavigator<ArenaStackProps>();
 
 export const RootStackScreen = () => {
   return (
@@ -63,9 +68,17 @@ export const BottomBarScreen = () => {
       tabBarPosition="bottom"
       tabBar={TabBar}>
       <BottomBar.Screen name="Timeline" component={DrawerStackScreen} />
-      <BottomBar.Screen name="Feed" component={FeedScreen} />
+      <BottomBar.Screen name="Arena" component={ArenaStackScreen} />
       <BottomBar.Screen name="Profile" component={ProfileScreen} />
     </BottomBar.Navigator>
+  );
+};
+
+export const ArenaStackScreen = () => {
+  return (
+    <ArenaStack.Navigator headerMode="none">
+      <ArenaStack.Screen name="Main" component={ArenaScreen} />
+    </ArenaStack.Navigator>
   );
 };
 

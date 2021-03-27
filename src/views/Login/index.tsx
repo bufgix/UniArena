@@ -83,9 +83,7 @@ function Login() {
       <Button
         disabled={loading}
         title="Giriş Yap"
-        icon={
-          <Icons.Google height={30} width={30} style={{ marginRight: 10 }} />
-        }
+        icon={<Icons.Google height={30} width={30} style={styles.icon} />}
         loading={loading}
         loadingProps={{ color: Colors.Primary }}
         buttonStyle={styles.button}
@@ -123,6 +121,7 @@ const styles = StyleSheet.create({
     color: Colors.Primary,
     fontWeight: 'bold',
   },
+  icon: { marginRight: 10 },
 });
 
 export default observer(Login);
