@@ -62,7 +62,12 @@ function Login() {
           navigation.navigate('Welcome');
         } else {
           // yeni üye değilse direkt olarak maine gidilecek
-          navigation.navigate('MainStack', { screen: 'Timeline' });
+          navigation.dispatch(
+            CommonActions.reset({
+              index: 0,
+              routes: [{ name: 'MainStack' }],
+            }),
+          );
         }
       })
       .catch(_err => {
