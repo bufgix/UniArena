@@ -5,13 +5,14 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { Text } from 'react-native-elements';
 import { Button } from 'react-native-elements';
 import changeNavBarColor from 'react-native-navigation-bar-color';
+import { observer } from 'mobx-react-lite';
 
 import type { RootStackProps } from '@/navigation';
 import { Colors } from '@/styles';
 
 type NavigaitonProps = StackNavigationProp<RootStackProps, 'MainStack'>;
 
-export default function Ranks() {
+function Ranks() {
   const navigation = useNavigation<NavigaitonProps>();
 
   useEffect(() => {
@@ -28,3 +29,4 @@ export default function Ranks() {
     </SafeAreaView>
   );
 }
+export default observer(Ranks);

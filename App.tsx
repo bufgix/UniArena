@@ -1,4 +1,5 @@
 import React from 'react';
+import { LogBox } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { NavigationContainer } from '@react-navigation/native';
 import { RootStackScreen } from '@/navigation';
@@ -8,6 +9,10 @@ import { persist } from 'mst-persist';
 
 import { StoreProvider, initStore } from '@/models';
 import Theme from '@/styles/theme';
+
+LogBox.ignoreLogs([
+  'Sending `onAnimatedValueUpdate` with no listeners registered.',
+]);
 
 const store = initStore();
 

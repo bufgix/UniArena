@@ -38,14 +38,7 @@ function Login() {
         setLoading(true);
         store.user
           .loadAdditionalData()
-          .then(() => {
-            navigation.dispatch(
-              CommonActions.reset({
-                index: 0,
-                routes: [{ name: 'MainStack' }],
-              }),
-            );
-          })
+          .then(() => goMain())
           .finally(() => setLoading(false));
       }
     });
@@ -62,12 +55,7 @@ function Login() {
         } else {
           store.user.loadAdditionalData().then(() => {
             // yeni üye değilse direkt olarak maine gidilecek
-            navigation.dispatch(
-              CommonActions.reset({
-                index: 0,
-                routes: [{ name: 'MainStack' }],
-              }),
-            );
+            goMain();
           });
         }
       })
@@ -75,6 +63,16 @@ function Login() {
         // Giriş yaparken hata olursa
       })
       .finally(() => setLoading(false));
+  };
+
+  const goMain = () => {
+    store.user.subscribe();
+    navigation.dispatch(
+      CommonActions.reset({
+        index: 0,
+        routes: [{ name: 'MainStack' }],
+      }),
+    );
   };
 
   return (

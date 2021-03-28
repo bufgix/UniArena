@@ -3,5 +3,6 @@ module.exports = {
   extends: '@react-native-community',
   rules: {
     'react-hooks/exhaustive-deps': 'warn',
+    curly: 'off',
   },
 };

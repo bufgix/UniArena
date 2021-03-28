@@ -8,8 +8,9 @@ import { useStore } from '@/models';
 import { Colors, Helpers, Spacing, Fonts } from '@/styles';
 import * as Icons from '@/components/icons';
 import spacing from '@/styles/spacing';
+import { observer } from 'mobx-react-lite';
 
-export default function Profile() {
+function Profile() {
   const store = useStore();
   const profilePicture = store.user.googleData?.photoURL;
   const nickname = store.user.nickname;
@@ -19,9 +20,8 @@ export default function Profile() {
       <Avatar
         size="xlarge"
         rounded
-        title="MT"
         source={{
-          uri: profilePicture ? profilePicture : '',
+          uri: profilePicture ? profilePicture : undefined,
         }}
         containerStyle={styles.avatar}
       />
@@ -73,3 +73,5 @@ const styles = StyleSheet.create({
     marginTop: Spacing.small,
   },
 });
+
+export default observer(Profile);
