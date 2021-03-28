@@ -1,21 +1,19 @@
 import React from 'react';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
-import { Text } from 'react-native-elements';
+import { Avatar, Text } from 'react-native-elements';
 import { StackNavigationProp } from '@react-navigation/stack';
 import {
   useNavigation,
   CompositeNavigationProp,
   DrawerActions,
 } from '@react-navigation/native';
-import {
-  DrawerContentComponentProps,
-  DrawerContentScrollView,
-} from '@react-navigation/drawer';
+import { DrawerContentComponentProps } from '@react-navigation/drawer';
 import { SvgProps } from 'react-native-svg';
 import { observer } from 'mobx-react-lite';
 
 import { useStore } from '@/models';
-import { Colors, Helpers } from '@/styles';
+import { Colors, Fonts, Helpers } from '@/styles';
+import { Role, RoleArea } from '@/components';
 import * as Icons from '@/components/icons';
 import { DrawerStackProp, RootStackProps } from '@/navigation';
 import helpers from '@/styles/helpers';
@@ -37,6 +35,9 @@ function DrawerContent({ state, descriptors }: DrawerContentComponentProps) {
   const navigation = useNavigation<NavigaitonProps>();
   const store = useStore();
 
+  const profilePicture = store.user.googleData?.photoURL;
+  const nickname = store.user.nickname;
+
   const doLogout = () => {
     store.user.logout().then(() => {
       navigation.dispatch(DrawerActions.closeDrawer());
@@ -45,7 +46,23 @@ function DrawerContent({ state, descriptors }: DrawerContentComponentProps) {
   };
 
   return (
-    <DrawerContentScrollView>
+    <>
+      <View style={styles.profileBanner}>
+        <TouchableOpacity
+          onPress={() =>
+            navigation.navigate('MainStack', { screen: 'Profile' })
+          }>
+          <Avatar
+            rounded
+            size="large"
+            source={{ uri: profilePicture ? profilePicture : undefined }}
+          />
+        </TouchableOpacity>
+        <Text style={styles.name}>{nickname}</Text>
+        <RoleArea>
+          <Role text="Javascirpt Master - III" level="MASTER" />
+        </RoleArea>
+      </View>
       <View>
         <View style={styles.routes}>
           {state.routes.map((route, index) => {
@@ -78,15 +95,28 @@ function DrawerContent({ state, descriptors }: DrawerContentComponentProps) {
             <Text style={styles.itemText}>Çıkış Yap</Text>
           </TouchableOpacity>
         </View>
+
+        <Text style={styles.version}>v1.0.0</Text>
       </View>
-      <Text style={styles.version}>v1.0.0</Text>
-    </DrawerContentScrollView>
+    </>
   );
 }
 
 const styles = StyleSheet.create({
   header: {
     ...Helpers.selfCenter,
+  },
+  profileBanner: {
+    minHeight: 180,
+    backgroundColor: Colors.OverlayColor,
+    justifyContent: 'flex-end',
+    paddingTop: 50,
+    paddingBottom: spacing.tiny,
+    paddingHorizontal: spacing.small,
+  },
+  name: {
+    ...Fonts.style.bold,
+    marginVertical: spacing.tiny,
   },
   item: {
     ...helpers.row,
@@ -97,7 +127,6 @@ const styles = StyleSheet.create({
     marginLeft: spacing.tiny,
   },
   routes: {
-    marginTop: spacing.medium,
     paddingHorizontal: spacing.small,
   },
   version: {

@@ -29,6 +29,10 @@ export default {
   InputDisable: '#F5F6F8',
   OverlayColor: '#F5F6FA',
 
+  Silver: '#8c8b87',
+  Gold: '#f7d800',
+  Master: '#5e00a0',
+
   Primary: ColorPrimary,
   PrimaryDisable: '#6F869D',
   Secondary: ColorSecondary,
