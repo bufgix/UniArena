@@ -82,6 +82,7 @@ const styles = StyleSheet.create({
     paddingTop: Platform.OS === 'ios' ? 20 : 0,
     borderTopWidth: 1,
     borderTopColor: Colors.Dark20,
+    backgroundColor: Colors.White,
     height: TABBAR_HEIGHT,
   },
   item: {

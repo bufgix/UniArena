@@ -10,7 +10,7 @@ import {
 import { StackNavigationProp } from '@react-navigation/stack';
 import type { LoginStackProps, RootStackProps } from '@/navigation';
 import { observer } from 'mobx-react-lite';
-
+import changeNavBarColor from 'react-native-navigation-bar-color';
 import * as Icons from '@/components/icons';
 
 import { useStore } from '@/models';
@@ -32,7 +32,7 @@ function Login() {
   useEffect(() => {
     // Eğer halihazırda giriş yapılmış ise
     // ana sayfaya yönlendir
-
+    changeNavBarColor(Colors.Primary, false, true);
     store.user.loginCheck().then(res => {
       if (res) {
         setLoading(true);
