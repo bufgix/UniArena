@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { SafeAreaView, StyleSheet, View } from 'react-native';
+import { SafeAreaView, StyleSheet } from 'react-native';
 import { Button, Input } from 'react-native-elements';
 import { observer } from 'mobx-react-lite';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import type { RootStackProps } from '@/navigation';
-import { Colors, Fonts, Helpers, Spacing } from '@/styles';
+import { Fonts, Helpers, Spacing } from '@/styles';
 
 import { useStore } from '@/models';
 
