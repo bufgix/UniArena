@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { SafeAreaView } from 'react-native';
+import { SafeAreaView, StyleSheet } from 'react-native';
 import { Button, Input } from 'react-native-elements';
 import { observer } from 'mobx-react-lite';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import type { RootStackProps } from '@/navigation';
+import { Fonts, Helpers, Spacing } from '@/styles';
 
 import { useStore } from '@/models';
 
@@ -24,15 +25,52 @@ function WelcomeScreen() {
   };
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.container}>
       <Input
-        placeholder="Pick a cool username"
+        placeholder="Kendine Bir İsim Seç"
         value={nickname}
         onChangeText={setNickname}
+        style={styles.inputStyle}
+        inputContainerStyle={styles.inputContainer}
       />
-      <Button title="Lets Go!" onPress={doSave} />
+
+      <Button
+        buttonStyle={styles.button}
+        titleStyle={styles.buttonText}
+        title="Arenaya Çık !"
+        onPress={doSave}
+      />
     </SafeAreaView>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    ...Helpers.fill,
+    ...Helpers.fillCenter,
+  },
+
+  button: {
+    ...Helpers.selfCenter,
+    marginTop: Spacing.large,
+    width: 225,
+    height: 60,
+    paddingVertical: Spacing.normal,
+    borderRadius: 10,
+  },
+
+  buttonText: {
+    fontWeight: 'bold',
+    ...Fonts.style.normal,
+  },
+  inputStyle: {
+    ...Helpers.textCenter,
+    ...Fonts.style.h5,
+  },
+  inputContainer: {
+    width: 350,
+    ...Helpers.selfCenter,
+  },
+});
 
 export default observer(WelcomeScreen);

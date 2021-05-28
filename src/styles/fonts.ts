@@ -23,6 +23,12 @@ const style = StyleSheet.create({
   h3: {
     fontSize: size.h3,
   },
+  h4: {
+    fontSize: size.h4,
+  },
+  h5: {
+    fontSize: size.h5,
+  },
   normal: {
     fontSize: size.regular,
   },
