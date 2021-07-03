@@ -1,6 +1,7 @@
-import { useEffect } from 'react';
+import { useEffect, useContext } from 'react';
 import { StatusBar, StatusBarStyle } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { QuestionContext } from './contexts';
 
 function useStatusBar(
   theme: StatusBarStyle = 'default',
@@ -15,4 +16,8 @@ function useStatusBar(
   }, [navigation, theme, animated]);
 }
 
-export { useStatusBar };
+const useQuestions = () => {
+  return useContext(QuestionContext);
+};
+
+export { useStatusBar, useQuestions };

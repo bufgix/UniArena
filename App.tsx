@@ -4,6 +4,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { NavigationContainer } from '@react-navigation/native';
 import { RootStackScreen } from '@/navigation';
 import { ThemeProvider } from 'react-native-elements';
+import { QuestionProvider } from '@/utils/contexts';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { persist } from 'mst-persist';
 import { QueryClient, QueryClientProvider } from 'react-query';
@@ -30,9 +31,11 @@ const App = () => {
       <StoreProvider value={store}>
         <ThemeProvider theme={Theme}>
           <QueryClientProvider client={queryClient}>
-            <NavigationContainer>
-              <RootStackScreen />
-            </NavigationContainer>
+            <QuestionProvider>
+              <NavigationContainer>
+                <RootStackScreen />
+              </NavigationContainer>
+            </QuestionProvider>
           </QueryClientProvider>
         </ThemeProvider>
       </StoreProvider>
