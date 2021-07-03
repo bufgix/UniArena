@@ -6,6 +6,7 @@ import { RootStackScreen } from '@/navigation';
 import { ThemeProvider } from 'react-native-elements';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { persist } from 'mst-persist';
+import { QueryClient, QueryClientProvider } from 'react-query';
 
 import { StoreProvider, initStore } from '@/models';
 import Theme from '@/styles/theme';
@@ -15,6 +16,7 @@ LogBox.ignoreLogs([
 ]);
 
 const store = initStore();
+const queryClient = new QueryClient();
 
 persist('@State_user', store, {
   storage: AsyncStorage,
@@ -27,9 +29,11 @@ const App = () => {
     <SafeAreaProvider>
       <StoreProvider value={store}>
         <ThemeProvider theme={Theme}>
-          <NavigationContainer>
-            <RootStackScreen />
-          </NavigationContainer>
+          <QueryClientProvider client={queryClient}>
+            <NavigationContainer>
+              <RootStackScreen />
+            </NavigationContainer>
+          </QueryClientProvider>
         </ThemeProvider>
       </StoreProvider>
     </SafeAreaProvider>

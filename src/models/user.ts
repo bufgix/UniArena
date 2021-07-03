@@ -49,6 +49,9 @@ export const User = types
         */
         yield firestore().collection('users').doc(self.googleData?.uid).set({
           nickname,
+          point: 0,
+          solved: 0,
+          solvedSucess: 0,
         });
       }),
       updateUser: (payload: UserDocType) => {
