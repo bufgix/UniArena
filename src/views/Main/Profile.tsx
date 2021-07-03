@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Avatar, Text } from 'react-native-elements';
 import { StatusBar } from 'react-native';
@@ -9,9 +9,22 @@ import { Colors, Helpers, Spacing, Fonts } from '@/styles';
 import * as Icons from '@/components/icons';
 import spacing from '@/styles/spacing';
 import { observer } from 'mobx-react-lite';
+import firestore from '@react-native-firebase/firestore';
 
 function Profile() {
   const store = useStore();
+
+  useEffect(() => {
+    firestore()
+      .collection('users')
+      .doc(store.user.googleData?.uid)
+      .get()
+      .then(response => {
+        setPoints(response.data()?.point);
+      });
+  }, [store.user.googleData?.uid]);
+
+  const [points, setPoints] = useState<string>('loading');
   const profilePicture = store.user.googleData?.photoURL;
   const nickname = store.user.nickname;
   return (
@@ -30,7 +43,7 @@ function Profile() {
       <View style={styles.header}>
         <View style={styles.status}>
           <Icons.Cup color={Colors.PrimaryDisable} height={30} width={30} />
-          <Text style={styles.count}>33</Text>
+          <Text style={styles.count}>{points}</Text>
         </View>
         <View style={styles.status}>
           <Icons.Bolt color={Colors.PrimaryDisable} height={30} width={30} />
