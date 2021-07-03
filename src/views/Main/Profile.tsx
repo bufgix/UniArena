@@ -14,6 +14,7 @@ import firestore from '@react-native-firebase/firestore';
 function Profile() {
   const store = useStore();
 
+  //Load solved and rank info
   useEffect(() => {
     firestore()
       .collection('users')
@@ -21,10 +22,12 @@ function Profile() {
       .get()
       .then(response => {
         setPoints(response.data()?.point);
+        setSolved(response.data()?.solved);
       });
   }, [store.user.googleData?.uid]);
 
   const [points, setPoints] = useState<string>('loading');
+  const [solved, setSolved] = useState<string>('loading');
   const profilePicture = store.user.googleData?.photoURL;
   const nickname = store.user.nickname;
   return (
@@ -47,7 +50,7 @@ function Profile() {
         </View>
         <View style={styles.status}>
           <Icons.Bolt color={Colors.PrimaryDisable} height={30} width={30} />
-          <Text style={styles.count}>85</Text>
+          <Text style={styles.count}>{solved}</Text>
         </View>
       </View>
     </SafeAreaView>
