@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>535420584234-hma3f0pkth4m7cj5d5a9dg7cn1ud1c5a.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.535420584234-hma3f0pkth4m7cj5d5a9dg7cn1ud1c5a</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>535420584234-s9lthad1nvr1bs5c7kq424bpufrf1pm3.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDxpiz8-yGoM3DPYQ-YafbaKX_cW2Th-GY</string>
+	<key>GCM_SENDER_ID</key>
+	<string>535420584234</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>org.reactjs.native.example.UNIArena</string>
+	<key>PROJECT_ID</key>
+	<string>uniarena-b8d07</string>
+	<key>STORAGE_BUCKET</key>
+	<string>uniarena-b8d07.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:535420584234:ios:f5e64a5a3b1aafb2311e53</string>
+	<key>DATABASE_URL</key>
+	<string>https://uniarena-b8d07-default-rtdb.firebaseio.com</string>
+</dict>
+</plist>
