@@ -5,17 +5,23 @@ import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { observer } from 'mobx-react-lite';
 import firestore from '@react-native-firebase/firestore';
-import { View, ActivityIndicator, Animated, Easing } from 'react-native';
+import {
+  View,
+  ActivityIndicator,
+  Animated,
+  Easing,
+  TouchableOpacity,
+} from 'react-native';
 
 import type { RootStackProps } from '@/navigation';
-import { useStore } from '@/models';
-import { useStatusBar } from '@/utils/hooks';
+import { useQuestions, useStatusBar } from '@/utils/hooks';
 import { useQuery } from 'react-query';
 import { Colors } from '@/styles';
 import { QuestionType } from '@/types';
 import * as Icons from '@/components/icons';
+import changeNavBarColor from 'react-native-navigation-bar-color';
 
-type NavigaitonProps = StackNavigationProp<RootStackProps, 'MainStack'>;
+type NavigationProps = StackNavigationProp<RootStackProps>;
 
 function Arena() {
   const scale = useRef(new Animated.Value(1)).current;
@@ -35,31 +41,28 @@ function Arena() {
       }),
     ]),
   );
-  const navigation = useNavigation<NavigaitonProps>();
-  const store = useStore();
+  const navigation = useNavigation<NavigationProps>();
+  const questionsContext = useQuestions();
   useStatusBar('dark-content', true);
 
   useEffect(() => {
     scaleAnim.start();
+  }, [scaleAnim]);
+
+  useEffect(() => {
+    changeNavBarColor(Colors.White, true, true);
   }, []);
 
-  const { data, isLoading, isError } = useQuery('questions', async () => {
+  const { isLoading } = useQuery('questions', async () => {
     let questions: QuestionType[] = [];
     const snapShot = await firestore().collection('questions').get();
     snapShot.forEach(q => questions.push(q.data() as QuestionType));
+    questionsContext?.setQuestions(questions); //TODO fetch 5 random questions
     return questions;
   });
 
-  const doLogout = () => {
-    store.user.logout().then(() => {
-      navigation.navigate('LoginStack', { screen: 'LoginScreen' });
-    });
-  };
-
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      {/*  <Text h1>Arena</Text>
-      <Button title="Log out" onPress={doLogout} /> */}
       <View
         style={{
           flex: 1,
@@ -78,7 +81,14 @@ function Arena() {
               height: 150,
               transform: [{ scale }],
             }}>
-            <Icons.Swords color={Colors.White} />
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate('QuizStack', {
+                  screen: 'Quiz',
+                });
+              }}>
+              <Icons.Swords color={Colors.White} />
+            </TouchableOpacity>
           </Animated.View>
         )}
       </View>
