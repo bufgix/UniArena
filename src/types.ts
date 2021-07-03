@@ -4,6 +4,6 @@ export type QuestionType = {
   c: string;
   d: string;
   correctAnswer: 'A' | 'B' | 'C' | 'D';
-  point: number;
+  point: string;
   questionText: string;
 };
