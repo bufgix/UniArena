@@ -9,6 +9,8 @@ import { TabBar, DrawerContent } from '@/components';
 
 import LoginScreen from '@/views/Login/index';
 import ArenaScreen from '@/views/Main/Arena';
+import QuizScreen from '@/views/Quiz';
+import ResultsScreen from '@/views/Quiz/Results';
 import ProfileScreen from '@/views/Main/Profile';
 import RanksScreen from '@/views/Main/Ranks';
 import WelcomeScreen from '@/views/Login/Welcome';
@@ -20,6 +22,7 @@ import { useStatusBar } from '@/utils/hooks';
 export type RootStackProps = {
   LoginStack: NavigatorScreenParams<LoginStackProps>;
   MainStack: NavigatorScreenParams<BottomBarProps> | undefined;
+  QuizStack: NavigatorScreenParams<QuizStackProps>;
 };
 
 export type BottomBarProps = {
@@ -38,6 +41,11 @@ export type DrawerStackProp = {
   Settings: undefined;
 };
 
+export type QuizStackProps = {
+  Quiz: undefined;
+  Results: { trueCount: number; falseCount: number; remainingTime: number };
+};
+
 export type ArenaStackProps = {
   Main: undefined;
 };
@@ -46,6 +54,7 @@ const RootStack = createStackNavigator<RootStackProps>();
 const BottomBar = createMaterialTopTabNavigator<BottomBarProps>();
 const LoginStack = createStackNavigator<LoginStackProps>();
 const Drawer = createDrawerNavigator<DrawerStackProp>();
+const QuizStack = createDrawerNavigator<QuizStackProps>();
 const ArenaStack = createStackNavigator<ArenaStackProps>();
 
 export const RootStackScreen = () => {
@@ -55,6 +64,7 @@ export const RootStackScreen = () => {
       <RootStack.Navigator headerMode="none">
         <RootStack.Screen name="LoginStack" component={LoginStackScreen} />
         <RootStack.Screen name="MainStack" component={BottomBarScreen} />
+        <RootStack.Screen name="QuizStack" component={QuizStackScreen} />
       </RootStack.Navigator>
     </>
   );
@@ -73,6 +83,13 @@ export const BottomBarScreen = () => {
     </BottomBar.Navigator>
   );
 };
+
+export const QuizStackScreen = () => (
+  <QuizStack.Navigator>
+    <QuizStack.Screen name="Quiz" component={QuizScreen} />
+    <QuizStack.Screen name="Results" component={ResultsScreen} />
+  </QuizStack.Navigator>
+);
 
 export const ArenaStackScreen = () => {
   return (
