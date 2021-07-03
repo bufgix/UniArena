@@ -1,32 +1,25 @@
 import React, { useEffect } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useNavigation, DrawerActions } from '@react-navigation/native';
-import { StackNavigationProp } from '@react-navigation/stack';
 import { Text } from 'react-native-elements';
-import { Button } from 'react-native-elements';
 import changeNavBarColor from 'react-native-navigation-bar-color';
 import { observer } from 'mobx-react-lite';
 
-import type { RootStackProps } from '@/navigation';
 import { Colors } from '@/styles';
-
-type NavigaitonProps = StackNavigationProp<RootStackProps, 'MainStack'>;
+import { StyleSheet } from 'react-native';
 
 function Ranks() {
-  const navigation = useNavigation<NavigaitonProps>();
-
   useEffect(() => {
     changeNavBarColor(Colors.White, true, true);
   }, []);
 
   return (
-    <SafeAreaView>
-      <Text h1>Ranks</Text>
-      <Button
-        title="Open"
-        onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}
-      />
+    <SafeAreaView style={styles.container}>
+      <Text h1>Ranking</Text>
     </SafeAreaView>
   );
 }
+
+const styles = StyleSheet.create({
+  container: { flex: 1, alignItems: 'center', paddingTop: 20 },
+});
 export default observer(Ranks);
