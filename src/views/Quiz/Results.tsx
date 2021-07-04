@@ -11,6 +11,7 @@ import { Button } from '@/components';
 import type { QuizStackProps, RootStackProps } from '@/navigation';
 import { useStatusBar } from '@/utils/hooks';
 import colors from '@/styles/colors';
+import { useQueryClient } from 'react-query';
 
 type NavigationProps = StackNavigationProp<RootStackProps>;
 
@@ -18,6 +19,8 @@ function Results() {
   const navigation = useNavigation<NavigationProps>();
   const route = useRoute<RouteProp<QuizStackProps, 'Results'>>();
   useStatusBar('dark-content', true);
+
+  const client = useQueryClient();
 
   return (
     <SafeAreaView style={styles.container}>
@@ -36,6 +39,7 @@ function Results() {
       <Button
         style={styles.button}
         onPress={() => {
+          client.invalidateQueries('questions');
           navigation.navigate('MainStack', { screen: 'Arena' });
         }}
         text="İlerle"

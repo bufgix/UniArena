@@ -60,7 +60,7 @@ function DrawerContent({ state, descriptors }: DrawerContentComponentProps) {
         </TouchableOpacity>
         <Text style={styles.name}>{nickname}</Text>
         <RoleArea>
-          <Role text="Javascirpt Master - III" level="MASTER" />
+          <Role text={store.user.point.toString()} level="MASTER" />
         </RoleArea>
       </View>
       <View>

@@ -4,7 +4,6 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { observer } from 'mobx-react-lite';
-import firestore from '@react-native-firebase/firestore';
 import {
   View,
   ActivityIndicator,
@@ -17,7 +16,6 @@ import type { RootStackProps } from '@/navigation';
 import { useQuestions, useStatusBar } from '@/utils/hooks';
 import { useQuery } from 'react-query';
 import { Colors } from '@/styles';
-import { QuestionType } from '@/types';
 import * as Icons from '@/components/icons';
 import changeNavBarColor from 'react-native-navigation-bar-color';
 
@@ -53,14 +51,10 @@ function Arena() {
     changeNavBarColor(Colors.White, true, true);
   }, []);
 
-  const { isLoading } = useQuery('questions', async () => {
-    let questions: QuestionType[] = [];
-    const snapShot = await firestore().collection('questions').get();
-    snapShot.forEach(q => questions.push(q.data() as QuestionType));
-    questions.sort(() => Math.random() - Math.random()).slice(0, 5);
-    questionsContext?.setQuestions(questions);
-    return questions;
-  });
+  const { isLoading } = useQuery(
+    'questions',
+    questionsContext?.fetchQuestions as any,
+  );
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
