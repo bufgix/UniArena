@@ -7,13 +7,19 @@ import auth from '@react-native-firebase/auth';
 import type { FirebaseAuthTypes } from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 
-type UserDocType = {
+export type UserDocType = {
   nickname: string;
+  point: number;
+  solved: number;
+  solvedSucess: number;
 };
 
 export const User = types
   .model({
     nickname: types.optional(types.string, ''),
+    point: types.optional(types.number, 0),
+    solved: types.optional(types.number, 0),
+    solvedSucess: types.optional(types.number, 0),
     level: types.optional(types.number, 0),
     googleData: types.maybeNull(types.frozen<FirebaseAuthTypes.User>()),
   })
@@ -54,8 +60,11 @@ export const User = types
           solvedSucess: 0,
         });
       }),
-      updateUser: (payload: UserDocType) => {
-        self.nickname = payload.nickname;
+      updateUser: ({ nickname, point, solved, solvedSucess }: UserDocType) => {
+        self.nickname = nickname;
+        self.point = point;
+        self.solved = solved;
+        self.solvedSucess = solvedSucess;
       },
       loginCheck: flow(function* () {
         const isLogged = yield* toGenerator(GoogleSignin.isSignedIn());
@@ -65,26 +74,36 @@ export const User = types
         }
         return false;
       }),
-      loadAdditionalData: flow(function* () {
-        const response = yield* toGenerator(
-          firestore().collection('users').doc(self.googleData?.uid).get(),
-        );
-        const data = response.data() as UserDocType;
-        self.nickname = data.nickname;
-      }),
     };
   })
   .actions(self => {
     let subscriber: Function | null = null;
     return {
+      loadAdditionalData: flow(function* () {
+        const response = yield* toGenerator(
+          firestore().collection('users').doc(self.googleData?.uid).get(),
+        );
+        const {
+          nickname,
+          solved,
+          point,
+          solvedSucess,
+        } = response.data() as UserDocType;
+        self.updateUser({ nickname, solved, point, solvedSucess });
+      }),
       subscribe: () => {
         if (!subscriber) {
           subscriber = firestore()
             .collection('users')
             .doc(self.googleData?.uid)
             .onSnapshot(snap => {
-              const { nickname } = snap.data() as UserDocType;
-              self.updateUser({ nickname });
+              const {
+                nickname,
+                point,
+                solved,
+                solvedSucess,
+              } = snap.data() as UserDocType;
+              self.updateUser({ nickname, point, solvedSucess, solved });
             });
         }
 
@@ -100,6 +119,9 @@ export const User = types
         self.googleData = null;
         self.nickname = '';
         self.level = 0;
+        self.solved = 0;
+        self.solvedSucess = 0;
+        self.point = 0;
         if (subscriber) subscriber();
         else subscriber = null;
       }),

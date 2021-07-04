@@ -57,7 +57,8 @@ function Arena() {
     let questions: QuestionType[] = [];
     const snapShot = await firestore().collection('questions').get();
     snapShot.forEach(q => questions.push(q.data() as QuestionType));
-    questionsContext?.setQuestions(questions); //TODO fetch 5 random questions
+    questions.sort(() => Math.random() - Math.random()).slice(0, 5);
+    questionsContext?.setQuestions(questions);
     return questions;
   });
 
